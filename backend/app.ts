@@ -2,7 +2,6 @@ import express, {NextFunction, Request, Response, Router} from 'express';
 import morgan from 'morgan';
 import * as path from 'path';
 import indexRouter from './routes/index';
-import controlRouter from './routes/control';
 import dataRouter from './routes/data';
 import dataStreamRouter from './routes/data-socket';
 import logger from './commons/logging/logger';
@@ -35,10 +34,9 @@ const allowStaticFilesServing = (app: Router) => {
 };
 
 const defineApiEndpoints = (app: Router) => {
-  app.use('/', indexRouter);
-  app.use('/control', controlRouter);
   app.use('/data', dataRouter);
   app.use('/datastream', dataStreamRouter);
+  app.use('/', indexRouter);
 };
 
 const createErrorHandlingForNotFound = (app: Router) => {

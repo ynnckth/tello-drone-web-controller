@@ -1,6 +1,10 @@
-[![CircleCI](https://circleci.com/gh/z-camp-drones/frontends/tree/master.svg?style=svg)](https://circleci.com/gh/z-camp-drones/frontends/tree/master)
 
-# Tello Drone Cockpit
+# Tello Drone Web Controller
+
+## Development
+Start the backend server in live reload mode: 
+> `cd backend && npm start`
+
 This repo contains of 4 different apps:
 
 <img src="./resources/Drone_control.png" width="450">
