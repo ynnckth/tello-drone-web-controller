@@ -2,38 +2,41 @@ import React from 'react';
 import './App.css';
 import VideoStream from './components/video-stream/VideoStream';
 import ControlUnit from './components/control-unit/ControlUnit';
-import io from 'socket.io-client';
-import {getServerAddress} from './config';
 import Header from './components/header/Header';
+import DroneController from './drone-controller';
 
 interface IProps {}
 
-interface IState {}
+interface IState {
+  connectedToDrone: boolean;
+}
 
 export default class App extends React.Component<IProps, IState> {
 
   public state: IState;
 
-  private readonly server = getServerAddress();
-  private readonly socket: SocketIOClient.Socket;
+  private droneController: DroneController;
 
   constructor(props: IProps) {
     super(props);
-    this.state = {};
+    this.state = {
+      connectedToDrone: false,
+    };
 
-    this.socket = io(this.server);
+    this.droneController = new DroneController();
+    this.connectToDrone = this.connectToDrone.bind(this);
   }
 
-  private connectToDrone() {
-    console.log('connecting to drone...')
+  private connectToDrone(): void {
+    this.droneController.connectToDrone();
   }
 
   public render() {
     return (
       <div className="App">
-        <Header droneConnected={false} onConnect={this.connectToDrone} />
-        <VideoStream/>
+        <Header droneConnected={this.state.connectedToDrone} onConnect={this.connectToDrone} />
         <ControlUnit/>
+        <VideoStream/>
       </div>
     );
   }
