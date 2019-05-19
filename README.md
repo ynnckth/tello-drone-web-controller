@@ -3,16 +3,11 @@
 
 ## Development
 Start the backend server in live reload mode: 
-> `cd backend && npm start`
+> `cd backend && npm start` // localhost:3001
 
-This repo contains of 4 different apps:
+Start the frontend in live reload mode:
+> `cd frontend && npm start` // localhost:3000
 
-<img src="./resources/Drone_control.png" width="450">
-
-1. Main Cockpit App - using ReactJS
-2. Video-stream App - using Anguar
-3. Control-center App - using VueJS
-4. Telemetry-stream App - using ReactJS
 
 ## Run with docker
 For a 'non-development' build, please simply run:

@@ -55,7 +55,6 @@ const createVideoStreamServer = (STREAM_PORT: number, SOCKET_PORT: number) => {
 
     // Record the stream to a local file?
   }).listen(STREAM_PORT);
-
 };
 
 export default createVideoStreamServer;

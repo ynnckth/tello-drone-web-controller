@@ -1,8 +1,11 @@
 import * as React from 'react';
+import JSMpeg from './jsmpeg.min';
 
 interface IProps {}
 
-interface IState {}
+interface IState {
+  player: any;
+}
 
 export default class VideoStream extends React.Component<IProps, IState> {
 
@@ -11,12 +14,22 @@ export default class VideoStream extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      player: undefined
+    };
+  }
+
+  componentDidMount(): void {
+    const canvas = this.refs.canvas;
+    // @ts-ignore
+    const wsUrl = 'ws://' + document.location.hostname + ':8083/';
+    // @ts-ignore
+    this.state.player = new JSMpeg.Player(wsUrl, {canvas: canvas});
   }
 
   public render() {
     return (
-      <div>Here comes the video stream</div>
+      <canvas ref="canvas" />
     );
   }
 }
