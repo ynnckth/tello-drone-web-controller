@@ -8,6 +8,7 @@ import {
   TAKEOFF_LAND,
 } from '../../keys';
 import DroneController from '../../drone-controller';
+import './ControlUnit.css';
 
 interface IProps {
 }
@@ -77,7 +78,7 @@ export default class ControlUnit extends React.Component<IProps, IState> {
 
   public render() {
     return (
-      <div>Here comes the control unit</div>
+      <div className="controls" />
     );
   }
 }

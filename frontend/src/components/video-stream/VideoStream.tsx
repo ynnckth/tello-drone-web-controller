@@ -1,7 +1,9 @@
 import * as React from 'react';
 import JSMpeg from './jsmpeg.min';
+import './VideoStream.css';
 
-interface IProps {}
+interface IProps {
+}
 
 interface IState {
   player: any;
@@ -15,7 +17,7 @@ export default class VideoStream extends React.Component<IProps, IState> {
     super(props);
 
     this.state = {
-      player: undefined
+      player: undefined,
     };
   }
 
@@ -29,7 +31,7 @@ export default class VideoStream extends React.Component<IProps, IState> {
 
   public render() {
     return (
-      <canvas ref="canvas" />
+      <canvas ref="canvas"/>
     );
   }
 }
