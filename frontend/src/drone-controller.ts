@@ -2,7 +2,8 @@ import {ControlKey, MovementControlKey} from './keys';
 import io from 'socket.io-client';
 import {getServerAddress} from './config';
 import {EventName} from './EventName';
-import { Observable, fromEvent } from 'rxjs';
+import {Observable, fromEvent} from 'rxjs';
+import {take} from 'rxjs/operators';
 
 
 interface DroneState {
@@ -36,7 +37,8 @@ export default class DroneController {
   }
 
   getDroneConnectionSuccessful(): Observable<void> {
-    return this.droneConnectionSuccessful$;
+    return this.droneConnectionSuccessful$
+      .pipe(take(1));
   }
 
   sendMovementCommand(movement: MovementControlKey, speed: number) {
