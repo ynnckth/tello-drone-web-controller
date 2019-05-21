@@ -36,7 +36,7 @@ export default class Header extends React.Component<IProps, IState> {
           <Typography variant="h6" color="inherit">Tello Cockpit</Typography>
           <div>
             {this.props.droneConnected
-              ? <Typography variant="body2" color="inherit">Connected to Drone</Typography>
+              ? <Typography variant="body2" color="inherit">Connected</Typography>
               : <Button onClick={() => this.onConnect()}>Connect to Drone</Button>}
           </div>
         </Toolbar>

@@ -19,16 +19,18 @@ export default class App extends React.Component<IProps, IState> {
 
   constructor(props: IProps) {
     super(props);
-    this.state = {
-      connectedToDrone: false,
-    };
-
     this.droneController = new DroneController();
+
+    this.state = {
+      connectedToDrone: false
+    };
     this.connectToDrone = this.connectToDrone.bind(this);
   }
 
   private connectToDrone(): void {
     this.droneController.connectToDrone();
+    this.droneController.getDroneConnectionSuccessful()
+      .subscribe(() => this.setState({connectedToDrone: true}));
   }
 
   public render() {
