@@ -90,7 +90,6 @@ export default class ControlUnit extends React.Component<IProps, IState> {
     }
   }
 
-  // TODO: get flip working
   private sendFlipCommand(keyCode: number) {
     const movement = FLIPPABLE_KEYS.find(mov => mov.keyCode === keyCode);
     if (movement) {

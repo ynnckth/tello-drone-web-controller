@@ -55,7 +55,7 @@ export default class DroneController {
   }
 
   sendFlipCommand(flipDirection: string) {
-    this.socket.emit(EventName.FLIP, {flipDirection});
+    this.socket.emit(EventName.FLIP, {direction: flipDirection});
   }
 
   getCurrentSpeed(): number {

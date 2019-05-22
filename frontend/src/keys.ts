@@ -114,5 +114,5 @@ export const EMERGENCY: ControlKey = {
 export const MOVEMENT_KEYS: MovementControlKey[] = [PITCH_FORWARD, PITCH_BACK, ROLL_LEFT, ROLL_RIGHT, YAW_LEFT, YAW_RIGHT, UP, DOWN,];
 export const MOVEMENT_KEYS_CODES: string[] = MOVEMENT_KEYS.map(k => k.key,);
 
-export const FLIPPABLE_KEYS: MovementControlKey[] = [PITCH_BACK, PITCH_BACK, ROLL_LEFT, ROLL_RIGHT];
+export const FLIPPABLE_KEYS: MovementControlKey[] = [PITCH_FORWARD, PITCH_BACK, ROLL_LEFT, ROLL_RIGHT];
 export const FLIPPABLE_KEYS_CODES: string[] = FLIPPABLE_KEYS.map(k => k.key,);
