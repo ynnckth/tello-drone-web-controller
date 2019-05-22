@@ -9,6 +9,8 @@ import {
 } from '../../keys';
 import DroneController from '../../drone-controller';
 import './ControlUnit.css';
+import PitchRollControls from './pitch-roll-controls/PitchRollControls';
+import YawHeightControls from './yaw-height-controls/YawHeightControls';
 
 interface IProps {
 }
@@ -78,7 +80,10 @@ export default class ControlUnit extends React.Component<IProps, IState> {
 
   public render() {
     return (
-      <div className="controls" />
+      <div className="controls">
+        <PitchRollControls/>
+        <YawHeightControls/>
+      </div>
     );
   }
 }
