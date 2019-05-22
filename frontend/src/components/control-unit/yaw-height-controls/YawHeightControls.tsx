@@ -1,5 +1,8 @@
 import * as React from 'react';
 import './YawHeightControls.css';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleDoubleDown, faAngleDoubleUp, faRedo, faUndo } from '@fortawesome/free-solid-svg-icons'
 
 interface IProps {
 }
@@ -14,18 +17,24 @@ export default class YawHeightControls extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {};
+
+    // add font awesome icons to library
+    library.add(faRedo);
+    library.add(faUndo);
+    library.add(faAngleDoubleUp);
+    library.add(faAngleDoubleDown);
   }
 
   public render() {
     return (
       <div className="control-container">
         <div className="control-circle">
-          <div className="arrow arrow-up"/>
+          <FontAwesomeIcon className="navigation flight-up" icon="angle-double-up"/>
           <div className="middle-row">
-            <div className="arrow arrow-left"/>
-            <div className="arrow arrow-right"/>
+            <FontAwesomeIcon className="yaw-right" icon="undo"/>
+            <FontAwesomeIcon className="yaw-left" icon="redo"/>
           </div>
-          <div className="arrow arrow-down"/>
+          <FontAwesomeIcon className="navigation flight-down" icon="angle-double-down"/>
         </div>
       </div>
     );

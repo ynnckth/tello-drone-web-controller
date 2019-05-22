@@ -78,11 +78,12 @@ export default class ControlUnit extends React.Component<IProps, IState> {
     }
   }
 
+  // TODO: check order of elements (pitchroll should be first since it's left)
   public render() {
     return (
       <div className="controls">
-        <PitchRollControls/>
         <YawHeightControls/>
+        <PitchRollControls/>
       </div>
     );
   }
