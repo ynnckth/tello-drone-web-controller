@@ -8,7 +8,7 @@ import {
   TAKEOFF_LAND,
   PITCH_FORWARD, PITCH_BACK, ROLL_LEFT, ROLL_RIGHT, YAW_LEFT, YAW_RIGHT, UP, DOWN,
 } from '../../keys';
-import DroneController from '../../drone-controller';
+import DroneController from '../../services/drone-controller';
 import './ControlUnit.css';
 import PitchRollControls from './pitch-roll-controls/PitchRollControls';
 import YawHeightControls from './yaw-height-controls/YawHeightControls';

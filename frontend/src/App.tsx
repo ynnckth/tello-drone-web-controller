@@ -3,7 +3,7 @@ import './App.css';
 import VideoStream from './components/video-stream/VideoStream';
 import ControlUnit from './components/control-unit/ControlUnit';
 import Header from './components/header/Header';
-import DroneController from './drone-controller';
+import DroneController from './services/drone-controller';
 import {Typography} from '@material-ui/core';
 
 interface IProps {

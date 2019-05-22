@@ -1,6 +1,6 @@
-import {ControlKey, MovementControlKey} from './keys';
+import {ControlKey, MovementControlKey} from '../keys';
 import io from 'socket.io-client';
-import {getServerAddress} from './config';
+import {getServerAddress} from '../config';
 import {EventName} from './EventName';
 import {Observable, fromEvent} from 'rxjs';
 import {take} from 'rxjs/operators';
