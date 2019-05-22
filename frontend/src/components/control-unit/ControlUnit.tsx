@@ -6,16 +6,22 @@ import {
   MOVEMENT_KEYS,
   MOVEMENT_KEYS_CODES,
   TAKEOFF_LAND,
+  PITCH_FORWARD, PITCH_BACK, ROLL_LEFT, ROLL_RIGHT,
 } from '../../keys';
 import DroneController from '../../drone-controller';
 import './ControlUnit.css';
 import PitchRollControls from './pitch-roll-controls/PitchRollControls';
 import YawHeightControls from './yaw-height-controls/YawHeightControls';
 
+export interface ActiveControl {
+  [key: string]: boolean;
+}
+
 interface IProps {
 }
 
 interface IState {
+  activeControls: ActiveControl;
 }
 
 export default class ControlUnit extends React.Component<IProps, IState> {
@@ -25,7 +31,14 @@ export default class ControlUnit extends React.Component<IProps, IState> {
 
   constructor(props: IProps) {
     super(props);
-    this.state = {};
+    this.state = {
+      activeControls: {
+        [PITCH_FORWARD.keyCode]: false,
+        [PITCH_BACK.keyCode]: false,
+        [ROLL_LEFT.keyCode]: false,
+        [ROLL_RIGHT.keyCode]: false,
+      },
+    };
     this.droneController = new DroneController();
 
     this.handleKeyPressedEvent = this.handleKeyPressedEvent.bind(this);
@@ -42,6 +55,7 @@ export default class ControlUnit extends React.Component<IProps, IState> {
   private handleKeyPressedEvent(event: KeyboardEvent) {
     if (MOVEMENT_KEYS_CODES.includes(event.key)) {
       if (!event.shiftKey) {
+        this.updateControlState(event.keyCode, true);
         this.sendMovementCommand(event.keyCode, this.droneController.getCurrentSpeed());
       }
     }
@@ -54,6 +68,7 @@ export default class ControlUnit extends React.Component<IProps, IState> {
     }
 
     if (MOVEMENT_KEYS_CODES.includes(event.key)) {
+      this.updateControlState(event.keyCode, false);
       this.sendMovementCommand(event.keyCode, 0);
 
     } else if (TAKEOFF_LAND.keyCode === event.keyCode) {
@@ -71,6 +86,7 @@ export default class ControlUnit extends React.Component<IProps, IState> {
     }
   }
 
+  // TODO: get flip working
   private sendFlipCommand(keyCode: number) {
     const movement = FLIPPABLE_KEYS.find(mov => mov.keyCode === keyCode);
     if (movement) {
@@ -78,12 +94,20 @@ export default class ControlUnit extends React.Component<IProps, IState> {
     }
   }
 
-  // TODO: check order of elements (pitchroll should be first since it's left)
+  private updateControlState(keyCode: number, active: boolean) {
+    this.setState({
+      activeControls: {
+        ...this.state.activeControls,
+        [keyCode]: active,
+      },
+    });
+  }
+
   public render() {
     return (
       <div className="controls">
         <YawHeightControls/>
-        <PitchRollControls/>
+        <PitchRollControls activeControls={this.state.activeControls}/>
       </div>
     );
   }

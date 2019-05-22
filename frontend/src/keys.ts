@@ -10,7 +10,7 @@ export interface MovementControlKey extends ControlKey {
   updateDroneState: (state: DroneState, speed: number) => DroneState;
 }
 
-const PITCH_FORWARD: MovementControlKey = {
+export const PITCH_FORWARD: MovementControlKey = {
   key: 'ArrowUp',
   keyCode: 38,
   flipDirection: 'f',
@@ -21,7 +21,7 @@ const PITCH_FORWARD: MovementControlKey = {
     }
   }
 };
-const PITCH_BACK: MovementControlKey = {
+export const PITCH_BACK: MovementControlKey = {
   key: 'ArrowDown',
   keyCode: 40,
   flipDirection: 'b',
@@ -33,7 +33,7 @@ const PITCH_BACK: MovementControlKey = {
   }
 };
 
-const ROLL_LEFT: MovementControlKey = {
+export const ROLL_LEFT: MovementControlKey = {
   key: 'ArrowLeft',
   keyCode: 37,
   flipDirection: 'l',
@@ -45,7 +45,7 @@ const ROLL_LEFT: MovementControlKey = {
   }
 };
 
-const ROLL_RIGHT: MovementControlKey = {
+export const ROLL_RIGHT: MovementControlKey = {
   key: 'ArrowRight',
   keyCode: 39,
   flipDirection: 'r',
