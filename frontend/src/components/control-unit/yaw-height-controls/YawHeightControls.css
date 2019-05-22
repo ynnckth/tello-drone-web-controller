@@ -22,7 +22,7 @@
 }
 
 .navigation.active {
-  color: #f67373;
+  color: black;
 }
 
 .flight-up {
@@ -37,10 +37,10 @@
   top: 4px;
 }
 
-.middle-row {
+.yaw-height-middle-row {
   display: flex;
   justify-content: space-between;
-  padding: 8px 5px 8px 5px;
+  padding: 13px 5px 8px 5px;
 }
 
 .yaw-right,
@@ -52,5 +52,5 @@
 
 .yaw-right.active,
 .yaw-left.active {
-  color: #f67373;
+  color: black;
 }

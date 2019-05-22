@@ -57,7 +57,7 @@ export const ROLL_RIGHT: MovementControlKey = {
   }
 };
 
-const UP: MovementControlKey = {
+export const UP: MovementControlKey = {
   key: 'w',
   keyCode: 87,
   updateDroneState: (state: DroneState, speed: number) => {
@@ -68,7 +68,7 @@ const UP: MovementControlKey = {
   }
 };
 
-const DOWN: MovementControlKey = {
+export const DOWN: MovementControlKey = {
   key: 's',
   keyCode: 83,
   updateDroneState: (state: DroneState, speed: number) => {
@@ -79,7 +79,7 @@ const DOWN: MovementControlKey = {
   }
 };
 
-const YAW_LEFT: MovementControlKey = {
+export const YAW_LEFT: MovementControlKey = {
   key: 'a',
   keyCode: 65,
   updateDroneState: (state: DroneState, speed: number) => {
@@ -90,7 +90,7 @@ const YAW_LEFT: MovementControlKey = {
   }
 };
 
-const YAW_RIGHT: MovementControlKey = {
+export const YAW_RIGHT: MovementControlKey = {
   key: 'd',
   keyCode: 68,
   updateDroneState: (state: DroneState, speed: number) => {

@@ -20,25 +20,10 @@ export default class PitchRollControls extends React.Component<IProps, IState> {
   }
 
   public render() {
-    let arrowUpActiveClass = 'arrow arrow-up';
-    if (this.props.activeControls[PITCH_FORWARD.keyCode]) {
-      arrowUpActiveClass += ' active';
-    }
-
-    let arrowDownActiveClass = 'arrow arrow-down';
-    if (this.props.activeControls[PITCH_BACK.keyCode]) {
-      arrowDownActiveClass += ' active';
-    }
-
-    let arrowLeftActiveClass = 'arrow arrow-left';
-    if (this.props.activeControls[ROLL_LEFT.keyCode]) {
-      arrowLeftActiveClass += ' active';
-    }
-
-    let arrowRightActiveClass = 'arrow arrow-right';
-    if (this.props.activeControls[ROLL_RIGHT.keyCode]) {
-      arrowRightActiveClass += ' active';
-    }
+    const arrowUpActiveClass = `arrow arrow-up ${this.props.activeControls[PITCH_FORWARD.keyCode] ? 'active' : ''}`;
+    const arrowDownActiveClass = `arrow arrow-down ${this.props.activeControls[PITCH_BACK.keyCode] ? 'active' : ''}`;
+    const arrowLeftActiveClass = `arrow arrow-left ${this.props.activeControls[ROLL_LEFT.keyCode] ? 'active' : ''}`;
+    const arrowRightActiveClass = `arrow arrow-right ${this.props.activeControls[ROLL_RIGHT.keyCode] ? 'active' : ''}`;
 
     return (
       <div className="control-container">

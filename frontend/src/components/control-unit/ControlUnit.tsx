@@ -6,7 +6,7 @@ import {
   MOVEMENT_KEYS,
   MOVEMENT_KEYS_CODES,
   TAKEOFF_LAND,
-  PITCH_FORWARD, PITCH_BACK, ROLL_LEFT, ROLL_RIGHT,
+  PITCH_FORWARD, PITCH_BACK, ROLL_LEFT, ROLL_RIGHT, YAW_LEFT, YAW_RIGHT, UP, DOWN,
 } from '../../keys';
 import DroneController from '../../drone-controller';
 import './ControlUnit.css';
@@ -37,6 +37,10 @@ export default class ControlUnit extends React.Component<IProps, IState> {
         [PITCH_BACK.keyCode]: false,
         [ROLL_LEFT.keyCode]: false,
         [ROLL_RIGHT.keyCode]: false,
+        [YAW_LEFT.keyCode]: false,
+        [YAW_RIGHT.keyCode]: false,
+        [UP.keyCode]: false,
+        [DOWN.keyCode]: false,
       },
     };
     this.droneController = new DroneController();
@@ -106,7 +110,7 @@ export default class ControlUnit extends React.Component<IProps, IState> {
   public render() {
     return (
       <div className="controls">
-        <YawHeightControls/>
+        <YawHeightControls activeControls={this.state.activeControls}/>
         <PitchRollControls activeControls={this.state.activeControls}/>
       </div>
     );
