@@ -1,10 +1,11 @@
-import express, {NextFunction, Request, Response, Router} from 'express';
+// @ts-ignore
+import express, { NextFunction, Request, Response, Router} from 'express';
+// @ts-ignore
 import morgan from 'morgan';
 import * as path from 'path';
 import indexRouter from './routes/index';
-import dataRouter from './routes/data';
-import dataStreamRouter from './routes/data-socket';
 import logger from './commons/logging/logger';
+// @ts-ignore
 import {default as http, Server} from 'http';
 import DroneController from './domain/drone-controller';
 
@@ -34,8 +35,6 @@ const allowStaticFilesServing = (app: Router) => {
 };
 
 const defineApiEndpoints = (app: Router) => {
-  app.use('/data', dataRouter);
-  app.use('/datastream', dataStreamRouter);
   app.use('/', indexRouter);
 };
 

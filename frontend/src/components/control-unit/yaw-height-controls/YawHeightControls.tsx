@@ -4,7 +4,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleDown, faAngleDoubleUp, faRedo, faUndo } from '@fortawesome/free-solid-svg-icons'
 import {ActiveControl} from '../ControlUnit';
-import {PITCH_BACK, PITCH_FORWARD, ROLL_LEFT, ROLL_RIGHT, UP, DOWN, YAW_LEFT, YAW_RIGHT} from '../../../keys';
+import {UP, DOWN, YAW_LEFT, YAW_RIGHT} from '../../../keys';
 
 interface IProps {
   activeControls: ActiveControl;

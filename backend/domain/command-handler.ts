@@ -3,6 +3,7 @@ import DroneController from './drone-controller';
 import {CommandType} from '../communication/command-type';
 import {Response} from '../communication/response';
 import VideoController from './video-controller';
+import {getDroneTelemetryReceiver} from '../routes/DroneTelemetryReceiver';
 import {MovementCommand, FlipCommand, SpeedChangeCommand} from './commands';
 
 export default class CommandHandler {
@@ -16,6 +17,7 @@ export default class CommandHandler {
     this.handleEmergencyLand = this.handleEmergencyLand.bind(this);
     this.handleFlip = this.handleFlip.bind(this);
     this.handleSpeedChange = this.handleSpeedChange.bind(this);
+    this.listenToDroneTelemetryEvents = this.listenToDroneTelemetryEvents.bind(this);
 
     this.startListeningToClientCommands();
   }
@@ -34,6 +36,7 @@ export default class CommandHandler {
       .then(() => {
         this.socket.emit(Response.CONNECTION_SUCCESSFUL, {});
         this.videoController.startVideoStream();
+        this.listenToDroneTelemetryEvents();
       });
   }
 
@@ -55,5 +58,12 @@ export default class CommandHandler {
 
   private handleSpeedChange(speedChangeCommand: SpeedChangeCommand) {
     this.droneController.changeSpeed(speedChangeCommand.speed);
+  }
+
+  private listenToDroneTelemetryEvents() {
+    const droneTelemetryReceiver = getDroneTelemetryReceiver();
+    droneTelemetryReceiver.on('message', (message: string) => {
+      this.socket.emit('telemetry_data', message);
+    });
   }
 }

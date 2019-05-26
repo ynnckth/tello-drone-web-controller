@@ -5,4 +5,5 @@ export enum EventName {
   TAKEOFF_LAND = 'takeoff_land',
   EMERGENCY = 'emergency',
   FLIP = 'flip',
+  TELEMETRY_DATA = 'telemetry_data',
 }

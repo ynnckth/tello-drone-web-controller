@@ -3,7 +3,7 @@ import './App.css';
 import VideoStream from './components/video-stream/VideoStream';
 import ControlUnit from './components/control-unit/ControlUnit';
 import Header from './components/header/Header';
-import DroneController from './services/drone-controller';
+import DroneController from './services/DroneController';
 import {Typography} from '@material-ui/core';
 
 interface IProps {
@@ -16,7 +16,6 @@ interface IState {
 export default class App extends React.Component<IProps, IState> {
 
   public state: IState;
-
   private droneController: DroneController;
 
   constructor(props: IProps) {
@@ -31,8 +30,12 @@ export default class App extends React.Component<IProps, IState> {
 
   private connectToDrone(): void {
     this.droneController.connectToDrone();
+
     this.droneController.getDroneConnectionSuccessful()
       .subscribe(() => this.setState({connectedToDrone: true}));
+
+    this.droneController.getTelemetryStream()
+      .subscribe((message) => console.log(message));
   }
 
   public render() {

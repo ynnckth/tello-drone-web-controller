@@ -18,10 +18,12 @@ export default class DroneController {
   private readonly socket: SocketIOClient.Socket;
   private droneState: DroneState;
   private droneConnectionSuccessful$: Observable<void>;
+  private droneTelemetry$: Observable<any>;
 
   constructor() {
     this.socket = io(getServerAddress());
     this.droneConnectionSuccessful$ = fromEvent(this.socket, EventName.CONNECTION_SUCCESSFUL);
+    this.droneTelemetry$ = fromEvent(this.socket, EventName.TELEMETRY_DATA);
 
     this.droneState = {
       pitch: 0,
@@ -56,6 +58,10 @@ export default class DroneController {
 
   sendFlipCommand(flipDirection: string) {
     this.socket.emit(EventName.FLIP, {direction: flipDirection});
+  }
+
+  getTelemetryStream(): Observable<any> {
+    return this.droneTelemetry$;
   }
 
   getCurrentSpeed(): number {
