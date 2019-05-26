@@ -1,5 +1,5 @@
-import logger from '../commons/logging/logger';
-import {getVideoForwardPort} from '../app-config';
+import logger from './util/logging/logger';
+import {getVideoForwardPort} from './app-config';
 
 const sdk = require('../lib/tellojs');
 const {spawn} = require('child_process');

@@ -1,4 +1,4 @@
-import {DroneState} from '../../backend/domain/state-serivce';
+import {DroneState} from '../../backend/src/StateService';
 
 export interface ControlKey {
   key: string;

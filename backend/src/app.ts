@@ -3,18 +3,18 @@ import express, { NextFunction, Request, Response, Router} from 'express';
 // @ts-ignore
 import morgan from 'morgan';
 import * as path from 'path';
-import indexRouter from './routes/index';
-import logger from './commons/logging/logger';
+import indexRouter from './routes';
+import logger from './util/logging/logger';
 // @ts-ignore
 import {default as http, Server} from 'http';
-import DroneController from './domain/drone-controller';
+import DroneController from './DroneController';
 
 import {Socket} from 'socket.io';
-import CommandHandler from './domain/command-handler';
+import CommandHandler from './CommandHandler';
 import {getAppPort, getVideoForwardPort, getVideoSocketPort} from './app-config';
-import createVideoStreamServer from './video-stream/video-stream-proxy';
-import VideoController from './domain/video-controller';
-import { StateService } from './domain/state-serivce';
+import createVideoStreamServer from './VideoStreamProxy';
+import VideoController from './VideoController';
+import { StateService } from './StateService';
 
 let appSocket: Socket = null;
 let stateService: StateService;

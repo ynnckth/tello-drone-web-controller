@@ -1,10 +1,9 @@
 import {Socket} from 'socket.io';
-import DroneController from './drone-controller';
-import {CommandType} from '../communication/command-type';
-import {Response} from '../communication/response';
-import VideoController from './video-controller';
-import {getDroneTelemetryReceiver} from '../routes/DroneTelemetryReceiver';
-import {MovementCommand, FlipCommand, SpeedChangeCommand} from './commands';
+import DroneController from './DroneController';
+import {Event} from './Event';
+import VideoController from './VideoController';
+import {getDroneTelemetryReceiver} from './DroneTelemetryReceiver';
+import {MovementCommand, FlipCommand, SpeedChangeCommand} from './Commands';
 
 export default class CommandHandler {
 
@@ -23,18 +22,18 @@ export default class CommandHandler {
   }
 
   private startListeningToClientCommands() {
-    this.socket.on(CommandType.CONNECT, this.handleConnect);
-    this.socket.on(CommandType.TAKEOFF_LAND, this.handleTakeOffOrLand);
-    this.socket.on(CommandType.MOVEMENT, this.handleMovementChange);
-    this.socket.on(CommandType.EMERGENCY, this.handleEmergencyLand);
-    this.socket.on(CommandType.FLIP, this.handleFlip);
-    this.socket.on(CommandType.SPEED_CHANGE, this.handleSpeedChange)
+    this.socket.on(Event.CONNECT, this.handleConnect);
+    this.socket.on(Event.TAKEOFF_LAND, this.handleTakeOffOrLand);
+    this.socket.on(Event.MOVEMENT, this.handleMovementChange);
+    this.socket.on(Event.EMERGENCY, this.handleEmergencyLand);
+    this.socket.on(Event.FLIP, this.handleFlip);
+    this.socket.on(Event.SPEED_CHANGE, this.handleSpeedChange)
   }
 
   private handleConnect() {
     this.droneController.connect()
       .then(() => {
-        this.socket.emit(Response.CONNECTION_SUCCESSFUL, {});
+        this.socket.emit(Event.CONNECTION_SUCCESSFUL, {});
         this.videoController.startVideoStream();
         this.listenToDroneTelemetryEvents();
       });
@@ -62,8 +61,8 @@ export default class CommandHandler {
 
   private listenToDroneTelemetryEvents() {
     const droneTelemetryReceiver = getDroneTelemetryReceiver();
-    droneTelemetryReceiver.on('message', (message: string) => {
-      this.socket.emit('telemetry_data', message);
+    droneTelemetryReceiver.on(Event.TELEMETRY_MESSAGE_FROM_DRONE, (message: string) => {
+      this.socket.emit(Event.TELEMETRY_DATA, message);
     });
   }
 }

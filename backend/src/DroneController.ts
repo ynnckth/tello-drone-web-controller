@@ -1,5 +1,5 @@
-import {MovementCommand} from './commands';
-import {StateService} from './state-serivce';
+import {MovementCommand} from './Commands';
+import {StateService} from './StateService';
 
 const sdk = require('../lib/tellojs');
 
