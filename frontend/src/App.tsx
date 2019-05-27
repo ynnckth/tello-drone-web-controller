@@ -11,6 +11,7 @@ interface IProps {
 
 interface IState {
   connectedToDrone: boolean;
+  batteryStatus: number | undefined;
 }
 
 export default class App extends React.Component<IProps, IState> {
@@ -24,6 +25,7 @@ export default class App extends React.Component<IProps, IState> {
 
     this.state = {
       connectedToDrone: false,
+      batteryStatus: undefined,
     };
     this.connectToDrone = this.connectToDrone.bind(this);
   }
@@ -35,7 +37,7 @@ export default class App extends React.Component<IProps, IState> {
       .subscribe(() => this.setState({connectedToDrone: true}));
 
     this.droneController.getTelemetryStream()
-      .subscribe((message) => console.log(message));
+      .subscribe(telemetryData => this.setState({batteryStatus: telemetryData.battery}));
   }
 
   public render() {
@@ -45,6 +47,7 @@ export default class App extends React.Component<IProps, IState> {
         {this.state.connectedToDrone ?
           <div>
             <ControlUnit/>
+            <div>Battery Status: {this.state.batteryStatus}%</div>
             <VideoStream/>
           </div>
           :

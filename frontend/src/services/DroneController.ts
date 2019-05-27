@@ -4,6 +4,7 @@ import {getServerAddress} from '../config';
 import {EventName} from './EventName';
 import {Observable, fromEvent} from 'rxjs';
 import {take} from 'rxjs/operators';
+import {DroneTelemetry} from './DroneTelemetry';
 
 
 interface DroneState {
@@ -16,9 +17,9 @@ interface DroneState {
 export default class DroneController {
 
   private readonly socket: SocketIOClient.Socket;
+  private readonly droneConnectionSuccessful$: Observable<void>;
+  private readonly droneTelemetry$: Observable<DroneTelemetry>;
   private droneState: DroneState;
-  private droneConnectionSuccessful$: Observable<void>;
-  private droneTelemetry$: Observable<any>;
 
   constructor() {
     this.socket = io(getServerAddress());
@@ -60,7 +61,7 @@ export default class DroneController {
     this.socket.emit(EventName.FLIP, {direction: flipDirection});
   }
 
-  getTelemetryStream(): Observable<any> {
+  getTelemetryStream(): Observable<DroneTelemetry> {
     return this.droneTelemetry$;
   }
 
