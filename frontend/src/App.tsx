@@ -5,6 +5,7 @@ import ControlUnit from './components/control-unit/ControlUnit';
 import Header from './components/header/Header';
 import DroneController from './services/DroneController';
 import {Typography} from '@material-ui/core';
+import BatteryStatus from './components/battery-status/BatteryStatus';
 
 interface IProps {
 }
@@ -47,8 +48,8 @@ export default class App extends React.Component<IProps, IState> {
         {this.state.connectedToDrone ?
           <div>
             <ControlUnit/>
-            <div>Battery Status: {this.state.batteryStatus}%</div>
             <VideoStream/>
+            <BatteryStatus batteryStatus={this.state.batteryStatus}/>
           </div>
           :
           <div className="not-connected-info-message">
