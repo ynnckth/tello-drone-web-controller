@@ -3,7 +3,6 @@ import express, { NextFunction, Request, Response, Router} from 'express';
 // @ts-ignore
 import morgan from 'morgan';
 import * as path from 'path';
-import indexRouter from './routes';
 import logger from './util/logging/logger';
 // @ts-ignore
 import {default as http, Server} from 'http';
@@ -30,12 +29,9 @@ const allowCorsRequests = (app: Router) => {
   });
 };
 
-const allowStaticFilesServing = (app: Router) => {
-  app.use(express.static(path.join('public')));
-};
-
-const defineApiEndpoints = (app: Router) => {
-  app.use('/', indexRouter);
+const serveStaticClientSpa = (app: Router) => {
+  app.use(express.static(path.join(__dirname, '../../frontend/build')));
+  app.use('*', (req, res) => res.sendFile(path.join(__dirname, '../../frontend/build', 'index.html')));
 };
 
 const createErrorHandlingForNotFound = (app: Router) => {
@@ -75,11 +71,8 @@ const create = (port: number) => {
   app.use(express.json());
   app.use(express.urlencoded({extended: false}));
 
-  allowStaticFilesServing(app);
   allowCorsRequests(app);
-
-  defineApiEndpoints(app);
-
+  serveStaticClientSpa(app);
   createErrorHandlingForNotFound(app);
 
   const server = createHttpServer(app);
