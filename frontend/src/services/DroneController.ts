@@ -62,6 +62,7 @@ export default class DroneController {
   }
 
   getTelemetryStream(): Observable<DroneTelemetry> {
+    // TODO: check if debounce needed (current event interval about 100ms)
     return this.droneTelemetry$;
   }
 

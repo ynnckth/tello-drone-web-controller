@@ -5,14 +5,26 @@ import ControlUnit from './components/control-unit/ControlUnit';
 import Header from './components/header/Header';
 import DroneController from './services/DroneController';
 import {Typography} from '@material-ui/core';
-import BatteryStatus from './components/battery-status/BatteryStatus';
+import DroneTelemetry from './components/telemetry/DroneTelemetry';
+
+export interface DroneTemperatureTelemetryData {
+  low: number | undefined;
+  high: number | undefined;
+}
+
+export interface DroneTelemetryData {
+  batteryStatus: number | undefined;
+  pitch: number | undefined;
+  roll: number | undefined;
+  temperature: DroneTemperatureTelemetryData;
+}
 
 interface IProps {
 }
 
 interface IState {
   connectedToDrone: boolean;
-  batteryStatus: number | undefined;
+  droneTelemetryData: DroneTelemetryData;
 }
 
 export default class App extends React.Component<IProps, IState> {
@@ -26,7 +38,12 @@ export default class App extends React.Component<IProps, IState> {
 
     this.state = {
       connectedToDrone: false,
-      batteryStatus: undefined,
+      droneTelemetryData: {
+        batteryStatus: undefined,
+        pitch: undefined,
+        roll: undefined,
+        temperature: {low: undefined, high: undefined},
+      },
     };
     this.connectToDrone = this.connectToDrone.bind(this);
   }
@@ -38,7 +55,16 @@ export default class App extends React.Component<IProps, IState> {
       .subscribe(() => this.setState({connectedToDrone: true}));
 
     this.droneController.getTelemetryStream()
-      .subscribe(telemetryData => this.setState({batteryStatus: telemetryData.battery}));
+      .subscribe(telemetryData => this.setState(
+        {
+          droneTelemetryData: {
+            batteryStatus: telemetryData.battery,
+            pitch: telemetryData.pitch,
+            roll: telemetryData.roll,
+            temperature: telemetryData.temperature,
+          },
+        },
+      ));
   }
 
   public render() {
@@ -49,7 +75,7 @@ export default class App extends React.Component<IProps, IState> {
           <div>
             <ControlUnit/>
             <VideoStream/>
-            <BatteryStatus batteryStatus={this.state.batteryStatus}/>
+            <DroneTelemetry droneTelemetryData={this.state.droneTelemetryData}/>
           </div>
           :
           <div className="not-connected-info-message">

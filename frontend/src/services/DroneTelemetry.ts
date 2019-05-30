@@ -10,7 +10,7 @@ interface SpeedTelemetryData {
   z: number;
 }
 
-interface TemperatureTelemetryData {
+export interface TemperatureTelemetryData {
   low: number;
   high: number;
 }

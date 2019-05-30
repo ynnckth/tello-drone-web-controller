@@ -1,0 +1,10 @@
+.drone-telemetry-data {
+  position: absolute;
+  right: 0;
+  top: 80px;
+  width: 130px;
+  background: rgba(6, 0, 0, 0.47);
+  margin-right: 15px;
+  padding: 10px;
+  border-radius: 5px;
+}

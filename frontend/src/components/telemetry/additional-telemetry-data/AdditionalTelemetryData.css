@@ -1,0 +1,9 @@
+.additional-telemetry-data {
+  color: whitesmoke;
+  font-size: 12px;
+}
+
+.telemetry-entry {
+  display: flex;
+  justify-content: space-between;
+}
