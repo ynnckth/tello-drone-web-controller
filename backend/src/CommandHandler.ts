@@ -30,6 +30,7 @@ export default class CommandHandler {
     this.socket.on(Event.SPEED_CHANGE, this.handleSpeedChange)
   }
 
+  // TODO: fix failed connection; currently connection is successful even if drone is not available!
   private handleConnect() {
     this.droneController.connect()
       .then(() => {
