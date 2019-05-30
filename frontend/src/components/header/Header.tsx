@@ -69,15 +69,15 @@ export default class Header extends React.Component<IProps, IState> {
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
                   Use the keyboard to control the drone:
-                  <ul>
-                    <li>Takeoff / land: space</li>
-                    <li>Height: w, s</li>
-                    <li>Yaw: a, d</li>
-                    <li>Pitch: arrow up, arrow down</li>
-                    <li>Roll: arrow left, arrow right</li>
-                    <li>Flip: shift + arrow</li>
-                  </ul>
                 </DialogContentText>
+                <ul>
+                  <li>Takeoff / land: space</li>
+                  <li>Height: w, s</li>
+                  <li>Yaw: a, d</li>
+                  <li>Pitch: arrow up, arrow down</li>
+                  <li>Roll: arrow left, arrow right</li>
+                  <li>Flip: shift + arrow</li>
+                </ul>
               </DialogContent>
               <DialogActions>
                 <Button onClick={this.closeInstructionsDialog} color="primary" autoFocus>Close</Button>
