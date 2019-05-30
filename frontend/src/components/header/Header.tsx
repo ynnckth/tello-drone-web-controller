@@ -4,10 +4,10 @@ import {AppBar, Dialog, DialogActions, DialogContent, DialogContentText, DialogT
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { library } from '@fortawesome/fontawesome-svg-core'
+import {library} from '@fortawesome/fontawesome-svg-core';
 import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-
+import keyboard from './keyboard.png';
 
 
 interface IProps {
@@ -57,7 +57,7 @@ export default class Header extends React.Component<IProps, IState> {
 
           <div>
             <Button onClick={this.openInstructionsDialog}>
-              <FontAwesomeIcon icon="info-circle" size={"1x"}/>
+              <FontAwesomeIcon icon="info-circle" size={'1x'}/>
             </Button>
 
             <Dialog
@@ -68,15 +68,29 @@ export default class Header extends React.Component<IProps, IState> {
               <DialogTitle id="alert-dialog-title">{'Instructions'}</DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                  Use the keyboard to control the drone:
+                  Use the keyboard to control the drone
                 </DialogContentText>
+                <div>
+                  <img src={keyboard} alt="keyboard"/>
+                  <div className="key key-w" />
+                  <div className="key key-s" />
+                  <div className="key key-a" />
+                  <div className="key key-d" />
+                  <div className="key key-up" />
+                  <div className="key key-down" />
+                  <div className="key key-left" />
+                  <div className="key key-right" />
+                  <div className="key key-esc" />
+                  <div className="key key-space" />
+                </div>
                 <ul>
-                  <li>Takeoff / land: space</li>
-                  <li>Height: w, s</li>
-                  <li>Yaw: a, d</li>
-                  <li>Pitch: arrow up, arrow down</li>
-                  <li>Roll: arrow left, arrow right</li>
-                  <li>Flip: shift + arrow</li>
+                  <li><strong>space</strong>: take off / land</li>
+                  <li><strong>w/s</strong>: height</li>
+                  <li><strong>a/d</strong>: yaw</li>
+                  <li><strong>arrow up/down</strong>: pitch</li>
+                  <li><strong>arrow left/right</strong>: roll</li>
+                  <li><strong>shift+arrow</strong>: flip</li>
+                  <li><strong>esc</strong>: emergency landing</li>
                 </ul>
               </DialogContent>
               <DialogActions>

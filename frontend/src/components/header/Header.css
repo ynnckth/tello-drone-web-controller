@@ -2,3 +2,63 @@
   display: flex;
   justify-content: space-between;
 }
+
+.key {
+  position: absolute;
+  width: 20px;
+  height: 18px;
+  background-color: black;
+  opacity: 0.5;
+  border-radius: 4px;
+}
+
+.key-w {
+  top: 201px;
+  left: 105px;
+}
+
+.key-s {
+  top: 220px;
+  left: 111px;
+}
+
+.key-a {
+  top: 220px;
+  left: 90px;
+}
+
+.key-d {
+  top: 220px;
+  left: 132px;
+}
+
+.key-up {
+  top: 240px;
+  left: 400px;
+}
+
+.key-down {
+  top: 259px;
+  left: 400px;
+}
+
+.key-left {
+  top: 259px;
+  left: 380px;
+}
+
+.key-right {
+  top: 259px;
+  left: 420px;
+}
+
+.key-esc {
+  top: 145px;
+  left: 54px;
+}
+
+.key-space {
+  top: 259px;
+  left: 137px;
+  width: 149px;
+}
