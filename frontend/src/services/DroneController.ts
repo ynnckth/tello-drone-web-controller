@@ -7,7 +7,7 @@ import {take} from 'rxjs/operators';
 import {DroneTelemetry} from './DroneTelemetry';
 
 
-interface DroneState {
+export interface DroneState {
   pitch: number;
   roll: number;
   yaw: number;
