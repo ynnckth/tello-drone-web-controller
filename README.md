@@ -1,8 +1,34 @@
 
 # Tello Drone Web Controller
+*Control a Ryze Tech Tello drone from your browser!*
 
-## Development
-Start the backend server in live reload mode: 
+## Usage
+Clone the repository and make sure you have Docker installed locally.
+Run the following command to build the image:
+> `docker-compose build`
+
+> `docker-compose up`
+
+Go to the app at http://localhost:3001
+
+
+#### Development
+
+Build the images (only needed initially since the node_modules folders are not mounted): 
+> `docker-compose -f docker-compose-dev.yml build --parallel`
+
+Start the backend server and the frontend client in live-reload (watch) mode:
+> `docker-compose -f docker-compose-dev.yml up`
+
+Navigate to the frontend live-reload server:
+> http://localhost:3000
+
+Editing any source files will live-reload the changes.
+
+
+#### Local development (without Docker)
+
+Start the **backend server** in live reload mode: 
 > `cd backend && npm start`
 
 The server will listen to websocket connections at:
@@ -12,37 +38,8 @@ The video stream websocket is served at:
 > ws://localhost:8083
 
 
-Start the frontend in live reload mode:
+Start the **frontend client** in live reload mode:
 > `cd frontend && npm start` 
 
 The frontend live reload server is served at:
 > http://localhost:3000
-
-
-
-TODO
-####
-
-* Fix video stream sizing (scaling)
-* Get and display the telemetry, battery and temperature data
-* Document data socket (where and how is it served)
-* Get everything running with Docker (Compose)
-
-(* Implement speed regulator)
-
-
-## Run with docker
-For a 'non-development' build, please simply run:
-```
-docker-compose build --parallel
-docker-compose up
-```
-
-## Develop with docker
-For a 'development' build (live reloading), please simply run:
-```
-docker-compose -f docker-compose-reload.yml build --parallel
-docker-compose -f docker-compose-reload.yml up
-```
-
-When you modify the `package.json`, you will need to re-build the docker files, as the `node_modules/` folder is not mounted as volume into the docker image.
