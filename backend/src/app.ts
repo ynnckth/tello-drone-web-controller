@@ -51,7 +51,6 @@ const configureSocket = (io: Socket) => {
 
   io.on('connection', (socket: Socket) => {
     logger.info('User connected to socket, %s', socket.id);
-    socket.broadcast.emit('hi');
 
     new CommandHandler(socket, new DroneController(stateService), new VideoController());
 
@@ -62,10 +61,6 @@ const configureSocket = (io: Socket) => {
 };
 const create = (port: number) => {
   const app = express();
-
-  // view engine setup
-  app.set('views', path.join('views'));
-  app.set('view engine', 'ejs');
 
   app.use(morgan('dev'));
   app.use(express.json());
