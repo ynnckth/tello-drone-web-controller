@@ -1,7 +1,7 @@
 import {Socket} from 'socket.io';
 import DroneController from './DroneController';
 import {Event} from './Event';
-import VideoController from './VideoController';
+import VideoController from './video-stream/VideoController';
 import {getDroneTelemetryReceiver} from './DroneTelemetryReceiver';
 import {MovementCommand, FlipCommand, SpeedChangeCommand} from './Commands';
 

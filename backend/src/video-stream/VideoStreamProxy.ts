@@ -1,4 +1,4 @@
-import logger from './util/logging/logger';
+import logger from '../util/logging/logger';
 
 const WebSocket = require('ws');
 const http = require('http');

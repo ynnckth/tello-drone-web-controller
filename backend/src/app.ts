@@ -11,8 +11,8 @@ import DroneController from './DroneController';
 import {Socket} from 'socket.io';
 import CommandHandler from './CommandHandler';
 import {getAppPort, getVideoForwardPort, getVideoSocketPort} from './app-config';
-import createVideoStreamServer from './VideoStreamProxy';
-import VideoController from './VideoController';
+import createVideoStreamServer from './video-stream/VideoStreamProxy';
+import VideoController from './video-stream/VideoController';
 import { StateService } from './StateService';
 
 let appSocket: Socket = null;
