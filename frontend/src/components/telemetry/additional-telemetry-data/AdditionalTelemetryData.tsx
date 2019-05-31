@@ -23,8 +23,7 @@ export default class AdditionalTelemetryData extends React.Component<IProps, ISt
   public render() {
     return (
       <div className="additional-telemetry-data">
-        {this.props.pitch !== undefined
-          ?
+        {this.props.pitch !== undefined ?
           <div>
             <div className="telemetry-entry">
               <div>Pitch:</div>
@@ -36,7 +35,7 @@ export default class AdditionalTelemetryData extends React.Component<IProps, ISt
             </div>
             <div className="telemetry-entry">
               <div>Temperature:</div>
-              <div>{this.props.temperature.high}°</div>
+              <div>{this.props.temperature.low}° - {this.props.temperature.high}°</div>
             </div>
           </div>
           : <div>Waiting for telemetry data...</div>
