@@ -11,7 +11,8 @@
     "tsc": "tsc",
     "build:live": "nodemon -r ts-node/register -- ./src/app.ts",
     "prod": "ts-node ./src/app.ts",
-    "serve": "npm start"
+    "serve": "npm start",
+    "start:mock": "nodemon -r ts-node/register -- ./src/mock/AppMock.ts"
   },
   "author": "",
   "license": "ISC",
