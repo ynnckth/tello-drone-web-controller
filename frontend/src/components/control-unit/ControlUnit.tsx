@@ -18,6 +18,7 @@ export interface ActiveControl {
 }
 
 interface IProps {
+  droneController: DroneController;
 }
 
 interface IState {
@@ -27,7 +28,6 @@ interface IState {
 export default class ControlUnit extends React.Component<IProps, IState> {
 
   public state: IState;
-  private droneController: DroneController;
 
   constructor(props: IProps) {
     super(props);
@@ -43,7 +43,6 @@ export default class ControlUnit extends React.Component<IProps, IState> {
         [DOWN.keyCode]: false,
       },
     };
-    this.droneController = new DroneController();
 
     this.handleKeyPressedEvent = this.handleKeyPressedEvent.bind(this);
     this.handleKeyReleasedEvent = this.handleKeyReleasedEvent.bind(this);
@@ -60,7 +59,7 @@ export default class ControlUnit extends React.Component<IProps, IState> {
     if (MOVEMENT_KEYS_CODES.includes(event.key)) {
       if (!event.shiftKey) {
         this.updateControlState(event.keyCode, true);
-        this.sendMovementCommand(event.keyCode, this.droneController.getCurrentSpeed());
+        this.sendMovementCommand(event.keyCode, this.props.droneController.getCurrentSpeed());
       }
     }
   }
@@ -76,24 +75,24 @@ export default class ControlUnit extends React.Component<IProps, IState> {
       this.sendMovementCommand(event.keyCode, 0);
 
     } else if (TAKEOFF_LAND.keyCode === event.keyCode) {
-      this.droneController.sendTakeOffOrLandCommand();
+      this.props.droneController.sendTakeOffOrLandCommand();
 
     } else if (EMERGENCY.keyCode === event.keyCode) {
-      this.droneController.sendEmergencyCommand();
+      this.props.droneController.sendEmergencyCommand();
     }
   }
 
   private sendMovementCommand(keyCode: number, speed: number) {
     const movement = MOVEMENT_KEYS.find(movement => movement.keyCode === keyCode);
     if (movement) {
-      this.droneController.sendMovementCommand(movement, speed);
+      this.props.droneController.sendMovementCommand(movement, speed);
     }
   }
 
   private sendFlipCommand(keyCode: number) {
     const movement = FLIPPABLE_KEYS.find(mov => mov.keyCode === keyCode);
     if (movement) {
-      this.droneController.sendFlipCommand(movement.flipDirection || 'f');
+      this.props.droneController.sendFlipCommand(movement.flipDirection || 'f');
     }
   }
 

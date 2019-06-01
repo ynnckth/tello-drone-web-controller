@@ -6,6 +6,7 @@ import Header from './components/header/Header';
 import DroneController from './services/DroneController';
 import {Typography} from '@material-ui/core';
 import DroneTelemetry from './components/telemetry/DroneTelemetry';
+import SpeedRegulation from './components/speed-regulation/SpeedRegulation';
 
 export interface DroneTemperatureTelemetryData {
   low: number | undefined;
@@ -30,7 +31,7 @@ interface IState {
 export default class App extends React.Component<IProps, IState> {
 
   public state: IState;
-  private droneController: DroneController;
+  private readonly droneController: DroneController;
 
   constructor(props: IProps) {
     super(props);
@@ -73,9 +74,10 @@ export default class App extends React.Component<IProps, IState> {
         <Header droneConnected={this.state.connectedToDrone} onConnect={this.connectToDrone}/>
         {this.state.connectedToDrone ?
           <div>
-            <ControlUnit/>
+            <ControlUnit droneController={this.droneController}/>
             <VideoStream/>
             <DroneTelemetry droneTelemetryData={this.state.droneTelemetryData}/>
+            <SpeedRegulation/>
           </div>
           :
           <div className="not-connected-info-message">
