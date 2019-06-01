@@ -2,7 +2,7 @@
 # Tello Drone Web Controller
 *Control a [Ryze Tech Tello](https://www.ryzerobotics.com/tello) drone from your browser!*
 
-<img src="https://github.com/ynnckth/tello-drone-web-controller/raw/master/assets/tello.jpg" width="500">
+<kbd><img src="https://github.com/ynnckth/tello-drone-web-controller/raw/master/assets/tello.jpg" width="300"></kbd>
 
 ## Usage
 Clone the repository and make sure you have Docker installed locally.
