@@ -7,6 +7,7 @@ import {Socket} from 'socket.io';
 import {getAppPort} from '../app-config';
 import {Event} from '../Event';
 import {getMockTelemetryEvent} from './Utils';
+import {MovementCommand} from '../Commands';
 const WebSocket = require('ws');
 
 const allowCorsRequests = (app: Router) => {
@@ -33,6 +34,10 @@ const configureCommandAndTelemetrySocket = (io: Socket) => {
     socket.on(Event.CONNECT, () => {
       mockDroneTelemetryEvents(socket);
       socket.emit(Event.CONNECTION_SUCCESSFUL);
+    });
+
+    socket.on(Event.MOVEMENT, (movement: MovementCommand) => {
+      console.log('Received movement command:', movement);
     });
 
     socket.on('disconnect', () => {
