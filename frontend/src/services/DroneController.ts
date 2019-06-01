@@ -14,17 +14,25 @@ export interface DroneState {
   height: number;
 }
 
+export enum Speed {
+  FAST=100,
+  SLOW=30,
+}
+
 export default class DroneController {
 
   private readonly socket: SocketIOClient.Socket;
   private readonly droneConnectionSuccessful$: Observable<void>;
   private readonly droneTelemetry$: Observable<DroneTelemetry>;
+
   private droneState: DroneState;
+  private currentSpeed: number;
 
   constructor() {
     this.socket = io(getServerAddress());
     this.droneConnectionSuccessful$ = fromEvent(this.socket, EventName.CONNECTION_SUCCESSFUL);
     this.droneTelemetry$ = fromEvent(this.socket, EventName.TELEMETRY_DATA);
+    this.currentSpeed = Speed.FAST;
 
     this.droneState = {
       pitch: 0,
@@ -62,11 +70,14 @@ export default class DroneController {
   }
 
   getTelemetryStream(): Observable<DroneTelemetry> {
-    // TODO: check if debounce needed (current event interval about 100ms)
     return this.droneTelemetry$;
   }
 
   getCurrentSpeed(): number {
-    return 100;
+    return this.currentSpeed;
+  }
+
+  setCurrentSpeed(speed: number): void {
+    this.currentSpeed = speed;
   }
 }

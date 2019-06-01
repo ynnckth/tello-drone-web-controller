@@ -77,7 +77,7 @@ export default class App extends React.Component<IProps, IState> {
             <ControlUnit droneController={this.droneController}/>
             <VideoStream/>
             <DroneTelemetry droneTelemetryData={this.state.droneTelemetryData}/>
-            <SpeedRegulation/>
+            <SpeedRegulation droneController={this.droneController}/>
           </div>
           :
           <div className="not-connected-info-message">

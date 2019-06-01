@@ -1,8 +1,10 @@
 import * as React from 'react';
 import {Switch} from '@material-ui/core';
 import './SpeedRegulation.css';
+import DroneController, {Speed} from '../../services/DroneController';
 
 interface IProps {
+  droneController: DroneController;
 }
 
 interface IState {
@@ -22,6 +24,11 @@ export default class SpeedRegulation extends React.Component<IProps, IState> {
   }
 
   private toggleSpeed() {
+    if (this.state.checkedFast) {
+      this.props.droneController.setCurrentSpeed(Speed.SLOW);
+    } else {
+      this.props.droneController.setCurrentSpeed(Speed.FAST);
+    }
     this.setState({checkedFast: !this.state.checkedFast});
   }
 
