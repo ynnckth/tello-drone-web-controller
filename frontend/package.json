@@ -27,6 +27,7 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "@testing-library/react": "^8.0.1",
     "@types/socket.io-client": "^1.4.32"
   },
   "browserslist": {

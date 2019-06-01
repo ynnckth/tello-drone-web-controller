@@ -33,7 +33,7 @@ export default class BatteryStatus extends React.Component<IProps, IState> {
           <rect width={this.calculateBatteryBarWidth()} height='25' fill='#32CD32' strokeWidth='1' stroke='#000' rx="2"
                 ry="2"/>
           <rect x="50" y="5" width='3' height='15' fill='#666666' strokeWidth='1' stroke='#000'/>
-          <text x="12" y="17" fill="white" fontSize="13">{this.props.batteryStatus}%</text>
+          <text x="12" y="17" fill="white" fontSize="13" data-testid="battery-status-text">{this.props.batteryStatus}%</text>
         </svg>}
       </div>
     );
