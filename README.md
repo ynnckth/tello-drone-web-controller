@@ -11,7 +11,7 @@ Run the following command to build the image:
 
 > `docker-compose up`
 
-Go to the app at http://localhost:3001
+Turn on the drone and connect to its Wifi. Go to the app at http://localhost:3001
 
 <img src="https://github.com/ynnckth/tello-drone-web-controller/raw/master/assets/screenshot.png" width="800">
 
